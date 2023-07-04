@@ -3,7 +3,7 @@ FROM python:3.6-alpine
 LABEL description="ElastAlert for docker reference @sc250024/docker-elastalert"
 LABEL maintainer="anjia0532 (anjia0532@gmail.com) Scott Crooks <scott.crooks@gmail.com>"
 
-ARG ELASTALERT_VERSION=v0.2.4
+ARG ELASTALERT_VERSION=2.12.0
 ARG MIRROR=false
 ARG ALPINE_HOST="mirrors.aliyun.com"
 ARG PIP_MIRROR="https://mirrors.aliyun.com/pypi/simple/"
@@ -14,7 +14,7 @@ ENV ELASTALERT_HOME=/opt/elastalert \
     CONTAINER_TIMEZONE=Etc/UTC 
 
 # elastalert env
-ENV ELASTALERT_URL=https://github.com/Yelp/elastalert/archive/${ELASTALERT_VERSION}.tar.gz  \    
+ENV ELASTALERT_URL=https://github.com/jertel/elastalert2/archive/${ELASTALERT_VERSION}.tar.gz  \    
     ELASTALERT_RULES_DIRECTORY=${ELASTALERT_HOME}/rules \
     ELASTALERT_PLUGIN_DIRECTORY=${ELASTALERT_HOME}/elastalert_modules \
     ELASTALERT_ENHANCEMENT_DIRECTORY=${ELASTALERT_HOME}/elastalert_enhancements \
