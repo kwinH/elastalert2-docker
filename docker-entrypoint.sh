@@ -59,7 +59,7 @@ __config_timezone_and_ntp() {
 
 __create_elastalert_index() {
     # Check if the Elastalert index exists in Elasticsearch and create it if it does not.
-	if ! curl -f "${protocol}${basicAuth}${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/${ELASTALERT_INDEX}" >/dev/null 2>&1
+	if ! curl -ikf "${protocol}${basicAuth}${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}/${ELASTALERT_INDEX}" >/dev/null 2>&1
     then
         echo "=> ${scriptName}: Creating Elastalert index in Elasticsearch..."
         elastalert-create-index "${createEaOptions}" \
@@ -131,7 +131,7 @@ __wait_for_elasticsearch() {
     while true;
     do
         echo "=> ${scriptName}: Waiting for Elasticsearch..."
-    	curl "${protocol}${basicAuth}${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}" 2>/dev/null && break
+    	curl -ik "${protocol}${basicAuth}${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}" 2>/dev/null && break
         sleep 1
     done
 }
